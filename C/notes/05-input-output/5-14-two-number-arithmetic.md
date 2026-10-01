@@ -32,18 +32,26 @@ int main(void)
 {
     int left = 20;
     int right = 4;
+    int sum = left + right;
+    int difference = left - right;
+    int product = left * right;
+    int quotient = left / right;
 
-    printf("sum=%d\n", left + right);
-    printf("difference=%d\n", left - right);
-    printf("product=%d\n", left * right);
-    printf("quotient=%d\n", left / right);
+    printf("sum=%d\n", sum);
+    printf("difference=%d\n", difference);
+    printf("product=%d\n", product);
+    printf("quotient=%d\n", quotient);
     return 0;
 }
 ```
 
 ## 6. 코드 해석
 
-두 객체는 처리 전 입력 역할을 한다. 각 식은 `int` 결과를 만들고 `%d`로 출력된다. 제수 4는 0이 아니다.
+1. `left`와 `right`는 계산 전 입력 역할을 하며, 제수 `right`는 0이 아닌 4다.
+2. 네 산술식은 모두 `int` 피연산자를 사용하므로 `int` 결과를 만든다.
+3. 결과를 `sum`, `difference`, `product`, `quotient`에 먼저 저장해 처리 단계와 출력 단계를 구별한다.
+4. 20과 4의 결과는 각각 24, 16, 80, 5다.
+5. 네 결과 객체는 모두 `int`이므로 `%d`와 대응한다.
 
 ## 7. 내부 동작
 
