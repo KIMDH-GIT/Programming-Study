@@ -85,6 +85,10 @@ quit
 
 첫 GDB 실행:
 
+```bash
+gdb ./main-g
+```
+
 ```gdb
 break calculate
 run
@@ -94,6 +98,10 @@ quit
 ```
 
 두 번째 GDB 실행:
+
+```bash
+gdb ./main-g
+```
 
 ```gdb
 break calculate
@@ -115,6 +123,10 @@ quit
 
 ## 실습 4 — Variable Inspection
 
+```bash
+gdb ./main-g
+```
+
 ```gdb
 break multiply
 run
@@ -132,6 +144,10 @@ quit
 - 값을 기록할 때 function·line·frame이 필요한 이유:
 
 ## 실습 5 — `continue`와 Backtrace
+
+```bash
+gdb ./main-g
+```
 
 ```gdb
 break calculate
@@ -202,7 +218,7 @@ g++ -std=c++17 -Wall -Wextra -pedantic -g bug.cpp -o bug
 gdb ./bug
 ```
 
-작성한 file에서 `main`과 output statement의 line을 확인한 뒤 breakpoint를 설정한다. 다음 흐름은 function에 전달되는 값부터 callee의 계산 결과까지 순서대로 확인한다.
+작성한 file에서 `main`과 output statement의 line을 확인한 뒤 breakpoint를 설정한다. 위 code를 그대로 입력하면 output statement는 line 20이며, line이 다르면 아래 `20`을 실제 확인한 번호로 바꾼다. 다음 흐름은 function에 전달되는 값부터 callee의 계산 결과까지 순서대로 확인한다.
 
 ```gdb
 break main

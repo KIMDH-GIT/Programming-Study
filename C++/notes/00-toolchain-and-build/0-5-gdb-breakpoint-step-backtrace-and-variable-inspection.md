@@ -147,7 +147,7 @@ $1 = 10
 
 `multiply`는 실행되었지만 내부 source line에서 멈추지 않았고 현재 frame은 `calculate`다.
 
-같은 breakpoint에서 다시 시작한 별도 실행에 `step`을 사용했다.
+이 GDB를 종료하고 `gdb ./main`으로 시작한 새 session에서는 같은 breakpoint에서 `step`을 사용했다.
 
 ```text
 (gdb) step
