@@ -127,7 +127,7 @@ step
     현재 line에서 호출하는 함수 내부로 진입한다.
 ```
 
-동일한 호출 line에서 차이를 확인하려고 `calculate`에 breakpoint를 설정했다.
+앞 절의 GDB를 종료한 뒤 새 GDB session을 시작하고, 동일한 호출 line에서 차이를 확인하려고 `calculate`에 breakpoint를 설정했다.
 
 ```text
 (gdb) break calculate
@@ -265,7 +265,7 @@ exercise 후반에는 정상 build되고 종료 상태도 `0`이지만 예상과
 
 ```text
 1. 예상 output과 실제 output을 비교한다.
-2. 계산 함수에 breakpoint를 두고 run한다.
+2. 함수 경계에 breakpoint를 두고 run한다.
 3. backtrace로 호출 경로를 확인한다.
 4. step으로 callee에 들어간다.
 5. next와 print로 중간 값을 확인한다.
@@ -273,7 +273,7 @@ exercise 후반에는 정상 build되고 종료 상태도 `0`이지만 예상과
 7. 예상과 실제가 처음 갈라지는 source 범위를 찾는다.
 ```
 
-중간 값 하나가 맞다고 전체 함수가 맞다고 결론 내리지 않고, 잘못된 최종 값만 보고 모든 callee를 의심하지도 않는다. signal에서 멈추는 기능과 crash 분석은 이번 Step에서 확장하지 않는다.
+처음부터 정답으로 의심한 line에 멈추는 것이 아니라, function에 전달된 값과 반환되는 값을 순서대로 비교해 조사 범위를 좁힌다. 중간 값 하나가 맞다고 전체 함수가 맞다고 결론 내리지 않고, 잘못된 최종 값만 보고 모든 callee를 의심하지도 않는다. signal에서 멈추는 기능과 crash 분석은 이번 Step에서 확장하지 않는다.
 
 ## 13. 자주 하는 실수
 
@@ -297,16 +297,16 @@ exercise 후반에는 정상 build되고 종료 상태도 `0`이지만 예상과
 
 ## 15. 확인 문제
 
-1. `-g`와 GDB는 각각 어떤 역할을 하는가?
-2. breakpoint는 source code를 수정하는가?
-3. `run`과 `continue`의 차이는 무엇인가?
-4. 동일한 함수 호출 line에서 `next`와 `step`은 어떻게 다른가?
-5. `print`가 보여 주는 값은 어느 시점과 frame의 값인가?
-6. `info locals`는 무엇을 보여 주는가?
-7. `backtrace`는 program의 전체 실행 기록인가?
-8. call stack과 stack frame은 어떤 관계인가?
-9. `-g` 없이도 executable을 실행할 수 있는가?
-10. build가 정상이고 종료 상태가 `0`이어도 debugger가 필요한 이유는 무엇인가?
+1. breakpoint에서 표시된 source line은 이미 실행된 statement인가, 이제 실행할 statement인가?
+2. `calculate`의 호출 결과만 확인할 때와 내부 계산을 조사할 때 각각 어떤 stepping command를 선택하는가?
+3. `multiply` frame에서 `input`을 바로 출력할 수 없는 이유는 무엇인가?
+4. `multiply`가 return한 뒤 `backtrace`에 해당 frame이 남아 있지 않은 이유는 무엇인가?
+5. no-`-g` executable에서도 가능한 관찰과 제한되는 관찰을 구분하라.
+6. 예상 output과 실제 output이 다를 때 breakpoint 이후 어떤 순서로 조사 범위를 좁힐 것인가?
+7. breakpoint에서 멈춘 뒤 `run`과 `continue`를 각각 입력하면 실행 흐름이 어떻게 달라지는가?
+8. `next`로 `multiply` 호출을 지난 뒤 현재 frame과 확인할 수 있는 local variable은 무엇인가?
+9. breakpoint를 추가하거나 제거해도 source code 자체가 바뀌지 않는 이유는 무엇인가?
+10. `-g` build와 GDB 실행은 debugging 과정에서 어떤 순서와 역할로 연결되는가?
 
 ## 참고 자료
 

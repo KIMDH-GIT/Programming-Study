@@ -183,13 +183,13 @@ int multiply(int a, int b)
 int calculate(int value)
 {
     int doubled = multiply(value, 2);
-    return doubled - 1;
+    return doubled + 1;
 }
 
 int main()
 {
     int input = 5;
-    int answer = calculate(input);
+    int answer = calculate(input - 1);
 
     std::cout << answer << '\n';
     return 0;
@@ -202,26 +202,29 @@ g++ -std=c++17 -Wall -Wextra -pedantic -g bug.cpp -o bug
 gdb ./bug
 ```
 
-작성한 file에서 line 12와 line 20이 어떤 statement인지 확인한 뒤 breakpoint를 설정한다.
+작성한 file에서 `main`과 output statement의 line을 확인한 뒤 breakpoint를 설정한다. 다음 흐름은 function에 전달되는 값부터 callee의 계산 결과까지 순서대로 확인한다.
 
 ```gdb
-break calculate
-break bug.cpp:12
+break main
 break bug.cpp:20
 run
+next
+print input
+step
+print value
 backtrace
 step
+print a
+print b
 next
 print result
-continue
-print doubled
 continue
 print answer
 quit
 ```
 
 - 예상 output / 실제 output:
-- `result` / `doubled` / `answer`:
+- `input` / `value` / `a` / `b` / `result` / `answer`:
 - 예상과 실제가 처음 갈라지는 source 범위:
 - 최소 수정과 수정 후 실행 결과:
 
