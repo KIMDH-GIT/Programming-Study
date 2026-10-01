@@ -275,6 +275,8 @@ exercise 후반에는 정상 build되고 종료 상태도 `0`이지만 예상과
 
 처음부터 정답으로 의심한 line에 멈추는 것이 아니라, function에 전달된 값과 반환되는 값을 순서대로 비교해 조사 범위를 좁힌다. 중간 값 하나가 맞다고 전체 함수가 맞다고 결론 내리지 않고, 잘못된 최종 값만 보고 모든 callee를 의심하지도 않는다. signal에서 멈추는 기능과 crash 분석은 이번 Step에서 확장하지 않는다.
 
+이번 variant에서는 `main`의 `input`, `calculate`의 `value`, `multiply`의 `a`·`b`·`result`를 호출 순서대로 기록하고, 예상과 실제가 처음 달라지는 함수 경계를 찾는다.
+
 ## 13. 자주 하는 실수
 
 - **`-g`를 GDB 실행 option이라고 생각한다:** compiler가 debug information을 생성하는 option이다.

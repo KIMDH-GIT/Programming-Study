@@ -222,6 +222,8 @@ gdb ./bug
 
 ```gdb
 break main
+break calculate
+break multiply
 break bug.cpp:20
 run
 next
